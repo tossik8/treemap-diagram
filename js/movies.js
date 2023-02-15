@@ -30,13 +30,15 @@ function createTreemap(data, svg){
     const groups = svg.selectAll("rect")
                       .data(root.leaves())
                       .enter()
-                      .append("g");
+                      .append("g")
+                      .attr("class", "map-container");
 
 
     groups.append("rect")
           .attr("x", d => d.x0)
           .attr("y", d => d.y0)
           .attr("width", d => d.x1 - d.x0)
+          .attr("class", "tile")
           .attr("height", d => d.y1 - d.y0)
           .attr("data-name", d => d.data.name)
           .attr("data-category", d => d.data.category)
@@ -60,12 +62,39 @@ function createTreemap(data, svg){
        .attr("width", 500);
 
     makeLegend(legend);
-
+    makeTooltip(root.leaves());
 }
 function makeLegend(legend){
   generateColumn(legend, firstColumn, 0, "first-column");
   generateColumn(legend, secondColumn, 80, "second-column");
   generateColumn(legend, thirdColumn, 150, "third-column");
+}
+
+function makeTooltip(data){
+  const rects = document.getElementsByClassName("map-container");
+  console.log(data);
+  for(let i = 0; i < rects.length; ++i){
+    rects[i].addEventListener("mouseover", () => {
+      const coordinates = rects[i].getBoundingClientRect();
+
+      document.getElementById("name").textContent = "Name: " + data[i].data.name;
+      document.getElementById("category").textContent = "Category: " + data[i].data.category;
+      document.getElementById("value").textContent = "Value: " + data[i].value;
+
+      document.getElementById("tooltip").setAttribute("data-value", data[i].value);
+
+      document.getElementById("tooltip").style.top = coordinates.top +  "px";
+      document.getElementById("tooltip").style.left =  coordinates.right + "px";
+      
+      document.getElementById("tooltip").classList.remove("invisible");
+      document.getElementById("tooltip").classList.add("visible");
+
+    });
+    rects[i].addEventListener("mouseleave", () => {
+      document.getElementById("tooltip").classList.add("invisible");
+      document.getElementById("tooltip").classList.remove("visible");
+    });
+  }
 }
 
 function generateColumn(legend, column, x, id){
