@@ -1,4 +1,4 @@
-import { firstColumn, secondColumn, thirdColumn } from "./legend-campaign-items.js";
+import { firstColumn, secondColumn, thirdColumn } from "./data/legend-campaign-items.js";
 
 const width = 960;
 const height = 570;
@@ -73,5 +73,3 @@ function generateColumn(legend, column, x, id){
         .attr("x", x + 20)
         .attr("y", (d,i) => 13 + i * 15);
 }
-
-export {generateColumn};

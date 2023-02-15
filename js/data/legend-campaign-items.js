@@ -53,15 +53,15 @@ const secondColumn = [
 const thirdColumn = [
       {
         text:"Video Games",
-        colour:""
+        colour:"#ff993e"
       },
       {
         text:"Sound",
-        colour:""
+        colour:"#ade5a1"
       },
       {
         text:"3D Printing",
-        colour:""
+        colour:"#a985ca"
       },
       {
         text:"Wearables",
