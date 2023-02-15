@@ -6,7 +6,6 @@ body{
     align-items: center;
 }
 .panel{
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,4 +22,11 @@ header{
 }
 #legend{
     margin-bottom: 1rem;
+}
+.content{
+    pointer-events: none;
+    font-size: 0.8rem;
+}
+.content > p{
+    margin: 0;
 }

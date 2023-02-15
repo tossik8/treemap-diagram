@@ -1,7 +1,7 @@
 import { firstColumn, secondColumn, thirdColumn } from "./data/legend-movies-items.js";
 
-const width = 960;
-const height = 570;
+const width = 1100;
+const height = 620;
 
 const svg = d3.select(".panel")
                 .append("svg")
@@ -27,18 +27,32 @@ function createTreemap(data, svg){
 
     console.log(hierarchy);
 
-    svg.selectAll("rect")
-       .data(root.leaves())
-       .enter()
-       .append("rect")
-       .attr("x", d => d.x0)
-       .attr("y", d => d.y0)
-       .attr("width", d => d.x1 - d.x0)
-       .attr("height", d => d.y1 - d.y0)
-       .attr("data-name", d => d.data.name)
-       .attr("data-category", d => d.data.category)
-       .attr("data-value", d => d.value)
-       .attr("fill", d => determineColour(d.data.category));
+    const groups = svg.selectAll("rect")
+                      .data(root.leaves())
+                      .enter()
+                      .append("g");
+
+
+    groups.append("rect")
+          .attr("x", d => d.x0)
+          .attr("y", d => d.y0)
+          .attr("width", d => d.x1 - d.x0)
+          .attr("height", d => d.y1 - d.y0)
+          .attr("data-name", d => d.data.name)
+          .attr("data-category", d => d.data.category)
+          .attr("data-value", d => d.value)
+          .attr("fill", d => determineColour(d.data.category));
+
+    const divs = groups.append("foreignObject")
+                        .attr("x", d => d.x0 + 4)
+                        .attr("y", d => d.y0 + 4)
+                        .attr("class", "text-div")
+                        .attr("width", d => d.x1 - d.x0 - 4)
+                        .attr("height", d => d.y1 - d.y0 - 4);
+
+    divs.append("xhtml:div")
+        .attr("class", "content")
+        .html(d => d.data.name);
 
     const legend = d3.select(".panel")
        .append("svg")
