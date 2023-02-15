@@ -1,9 +1,9 @@
 import { firstColumn, secondColumn, thirdColumn } from "./data/legend-movies-items.js";
 
-const width = 1100;
+const width = 960;
 const height = 570;
 
-const svg = d3.select(".panel")
+const svg = d3.select("#tree-map-container")
                 .append("svg")
                 .attr("id", "tree-map")
                 .attr("width", width)
@@ -76,7 +76,6 @@ function makeTooltip(data){
   console.log(data);
   for(let i = 0; i < rects.length; ++i){
     rects[i].addEventListener("mouseover", () => {
-      const coordinates = rects[i].getBoundingClientRect();
 
       document.getElementById("name").textContent = "Name: " + data[i].data.name;
       document.getElementById("category").textContent = "Category: " + data[i].data.category;
@@ -84,8 +83,8 @@ function makeTooltip(data){
 
       document.getElementById("tooltip").setAttribute("data-value", data[i].value);
 
-      document.getElementById("tooltip").style.top = coordinates.top +  "px";
-      document.getElementById("tooltip").style.left =  coordinates.right + "px";
+      document.getElementById("tooltip").style.top = rects[i].children[0].attributes.getNamedItem("y").value +  "px";
+      document.getElementById("tooltip").style.left = rects[i].children[0].attributes.getNamedItem("x").value+ "px";
 
       document.getElementById("tooltip").classList.remove("invisible");
       document.getElementById("tooltip").classList.add("visible");

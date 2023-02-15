@@ -10,12 +10,21 @@ body{
     flex-direction: column;
     align-items: center;
 }
+#tree-map-container{
+    position: relative;
+}
 header{
-    margin-top: 1.5rem;
+    margin-top: 1.3rem;
 }
 .link{
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
+}
+#title{
+    font-size: 3rem;
+}
+#description{
+    margin-top:-1.7rem;
 }
 #tree-map{
     margin-bottom: 1rem;
@@ -44,6 +53,8 @@ header{
     padding: 0.6rem;
     border-radius: 0.3rem;
     text-align: center;
+    z-index: 1;
+    width:max-content;
 }
 #name{
     margin:0;
