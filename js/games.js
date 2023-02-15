@@ -36,7 +36,8 @@ function createTreemap(data, svg){
        .attr("height", d => d.y1 - d.y0)
        .attr("data-name", d => d.data.name)
        .attr("data-category", d => d.data.category)
-       .attr("data-value", d => d.value);
+       .attr("data-value", d => d.value)
+       .attr("fill", d => determineColour(d.data.category));
 
     const legend = d3.select(".panel")
                      .append("svg")
@@ -52,7 +53,6 @@ function makeLegend(legend){
 }
 
 function generateColumn(legend, column, x, id){
-  console.log(column);
   const groups = legend.selectAll(id)
                         .attr("id", id)
                         .data(column)
@@ -72,4 +72,24 @@ function generateColumn(legend, column, x, id){
         .text(d => d.text)
         .attr("x", x + 20)
         .attr("y", (d,i) => 13 + i * 15);
+}
+function determineColour(category){
+  if(category === "Wii") return "#4c92c3";
+  else if(category === "GB") return "#ffc993";
+  else if(category === "PS2") return "#de5253";
+  else if(category === "SNES") return "#d1c0dd";
+  else if(category === "GBA") return "#e992ce";
+  else if (category === "2006") return "#d2d2d2";
+  else if(category === "DS") return "#bed2ed";
+  else if(category === "PS3") return "#56b356";
+  else if(category === "3DS") return "#ffadab"
+  else if(category === "PS") return "#a3786f";
+  else if(category === "XB") return "#f9c5db";
+  else if(category === "PSP") return "#c9ca4e";
+  else if(category === "X360") return "#ff993e";
+  else if(category === "NES") return "#ade5a1";
+  else if(category === "PS4") return "#a985ca";
+  else if(category === "N64") return "#d0b0a9";
+  else if(category === "PC") return "#999999";
+  else return "#e2e2a4";
 }

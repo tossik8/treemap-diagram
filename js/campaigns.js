@@ -36,12 +36,14 @@ function createTreemap(data,svg){
        .attr("height", d => d.y1 - d.y0)
        .attr("data-name", d => d.data.name)
        .attr("data-category", d => d.data.category)
-       .attr("data-value", d => d.value);
+       .attr("data-value", d => d.value)
+       .attr("fill", d => determineColour(d.data.category));
 
     const legend = d3.select(".panel")
                      .append("svg")
                      .attr("id", "legend")
-                     .attr("width", 500);
+                     .attr("width", 500)
+                     .attr("height", 190);
 
     makeLegend(legend);
 }
@@ -52,7 +54,6 @@ function makeLegend(legend){
 }
 
 function generateColumn(legend, column, x, id){
-  console.log(column);
   const groups = legend.selectAll(id)
                         .attr("id", id)
                         .data(column)
@@ -72,4 +73,25 @@ function generateColumn(legend, column, x, id){
         .text(d => d.text)
         .attr("x", x + 20)
         .attr("y", (d,i) => 13 + i * 15);
+}
+function determineColour(category){
+  if(category === "Product Design") return "#4c92c3";
+  else if(category === "Drinks") return "#45cbd9";
+  else if(category === "Technology") return "#ffc993";
+  else if(category === "Gaming Hardware") return "#de5253";
+  else if(category === "Television") return "#d1c0dd";
+  else if(category === "Food") return "#e992ce";
+  else if (category === "Apparel") return "#d2d2d2";
+  else if(category === "Tabletop Games") return "#bed2ed";
+  else if(category === "Hardware") return "#56b356";
+  else if(category === "Narrative Film") return "#ffadab"
+  else if(category === "Web") return "#a3786f";
+  else if(category === "Games") return "#f9c5db";
+  else if(category === "Art") return "#c9ca4e";
+  else if(category === "Video Games") return "#ff993e";
+  else if(category === "Sound") return "#ade5a1";
+  else if(category === "3D Printing") return "#a985ca";
+  else if(category === "Wearables") return "#d0b0a9";
+  else if(category === "Sculpture") return "#999999";
+  else return "#e2e2a4";
 }

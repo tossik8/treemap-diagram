@@ -4,6 +4,10 @@ const firstColumn = [
     colour: "#4c92c3"
   },
   {
+    text: "Drinks",
+    colour:"#45cbd9"
+  },
+  {
     text:"Technology",
     colour: "#ffc993"
   },

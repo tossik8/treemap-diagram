@@ -37,7 +37,8 @@ function createTreemap(data, svg){
        .attr("height", d => d.y1 - d.y0)
        .attr("data-name", d => d.data.name)
        .attr("data-category", d => d.data.category)
-       .attr("data-value", d => d.value);
+       .attr("data-value", d => d.value)
+       .attr("fill", d => determineColour(d.data.category));
 
     const legend = d3.select(".panel")
        .append("svg")
@@ -54,7 +55,6 @@ function makeLegend(legend){
 }
 
 function generateColumn(legend, column, x, id){
-  console.log(column);
   const groups = legend.selectAll(id)
                         .attr("id", id)
                         .data(column)
@@ -74,4 +74,13 @@ function generateColumn(legend, column, x, id){
         .text(d => d.text)
         .attr("x", x + 20)
         .attr("y", (d,i) => 13 + i * 15);
+}
+function determineColour(category){
+  if(category === "Action") return "#4c92c3";
+  else if(category === "Drama") return "#ffc993";
+  else if(category === "Biography") return "#de5253";
+  else if(category === "Adventure") return "#bed2ed";
+  else if(category === "Animation") return "#56b356";
+  else if(category === "Comedy") return "#ff993e";
+  else return "#ade5a1";
 }
