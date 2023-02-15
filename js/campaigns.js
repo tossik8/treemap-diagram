@@ -1,7 +1,7 @@
 import { firstColumn, secondColumn, thirdColumn } from "./data/legend-campaign-items.js";
 
 const width = 1100;
-const height = 620;
+const height = 570;
 
 const svg = d3.select(".panel")
     .append("svg")

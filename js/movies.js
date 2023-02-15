@@ -1,7 +1,7 @@
 import { firstColumn, secondColumn, thirdColumn } from "./data/legend-movies-items.js";
 
 const width = 1100;
-const height = 620;
+const height = 570;
 
 const svg = d3.select(".panel")
                 .append("svg")
@@ -59,7 +59,8 @@ function createTreemap(data, svg){
     const legend = d3.select(".panel")
        .append("svg")
        .attr("id", "legend")
-       .attr("width", 500);
+       .attr("width", 500)
+       .attr("height", 75);
 
     makeLegend(legend);
     makeTooltip(root.leaves());
@@ -85,7 +86,7 @@ function makeTooltip(data){
 
       document.getElementById("tooltip").style.top = coordinates.top +  "px";
       document.getElementById("tooltip").style.left =  coordinates.right + "px";
-      
+
       document.getElementById("tooltip").classList.remove("invisible");
       document.getElementById("tooltip").classList.add("visible");
 

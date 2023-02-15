@@ -1,7 +1,7 @@
 import { firstColumn, secondColumn, thirdColumn } from "./data/legend-games-items.js";
 
 const width = 1100;
-const height = 620;
+const height = 570;
 
 const svg = d3.select(".panel")
     .append("svg")
@@ -77,7 +77,7 @@ function makeTooltip(data){
   for(let i = 0; i < rects.length; ++i){
     rects[i].addEventListener("mouseover", () => {
       const coordinates = rects[i].getBoundingClientRect();
-      
+
       document.getElementById("name").textContent = "Name: " + data[i].data.name;
       document.getElementById("category").textContent = "Category: " + data[i].data.category;
       document.getElementById("value").textContent = "Value: " + data[i].value;
