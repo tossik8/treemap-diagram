@@ -1,5 +1,33 @@
 import { firstColumn, secondColumn, thirdColumn } from "./data/legend-movies-items.js";
 
+function adjustZoom(){
+  if(document.documentElement.clientWidth < 380){
+    document.body.style.zoom = "37%";
+  }
+  else if(document.documentElement.clientWidth < 520){
+    document.body.style.zoom = "40%";
+  }
+  else if(document.documentElement.clientWidth < 700){
+    document.body.style.zoom = "50%";
+  }
+  else if(document.documentElement.clientWidth < 880){
+    document.body.style.zoom = "70%";
+  }
+  else if(document.documentElement.clientWidth < 980){
+    document.body.style.zoom = "90%";
+  }
+  else{
+    document.body.style.zoom = "100%";
+  }
+}
+
+window.onload = () => {
+  adjustZoom();
+}
+window.onresize = () => {
+  adjustZoom();
+}
+
 const width = 960;
 const height = 570;
 
@@ -24,8 +52,6 @@ function createTreemap(data, svg){
                       .padding(0.5);
 
     const root = treemap(hierarchy);
-
-    console.log(hierarchy);
 
     const groups = svg.selectAll("rect")
                       .data(root.leaves())
@@ -73,7 +99,6 @@ function makeLegend(legend){
 
 function makeTooltip(data){
   const rects = document.getElementsByClassName("map-container");
-  console.log(data);
   for(let i = 0; i < rects.length; ++i){
     rects[i].addEventListener("mouseover", () => {
 

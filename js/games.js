@@ -1,5 +1,32 @@
 import { firstColumn, secondColumn, thirdColumn } from "./data/legend-games-items.js";
 
+function adjustZoom(){
+  if(document.documentElement.clientWidth < 380){
+    document.body.style.zoom = "37%";
+  }
+  else if(document.documentElement.clientWidth < 520){
+    document.body.style.zoom = "40%";
+  }
+  else if(document.documentElement.clientWidth < 700){
+    document.body.style.zoom = "50%";
+  }
+  else if(document.documentElement.clientWidth < 880){
+    document.body.style.zoom = "70%";
+  }
+  else if(document.documentElement.clientWidth < 980){
+    document.body.style.zoom = "90%";
+  }
+  else{
+    document.body.style.zoom = "100%";
+  }
+}
+window.onload = () => {
+  adjustZoom();
+}
+window.onresize = () => {
+  adjustZoom();
+}
+
 const width = 960;
 const height = 570;
 
@@ -21,8 +48,6 @@ function createTreemap(data, svg){
     const treemap = d3.treemap()
                       .size([width, height])
                       .padding(0.5);
-
-    console.log(hierarchy);
 
     const root = treemap(hierarchy);
 
@@ -73,7 +98,6 @@ function makeLegend(legend){
 
 function makeTooltip(data){
   const rects = document.getElementsByClassName("map-container");
-  console.log(data);
   for(let i = 0; i < rects.length; ++i){
     rects[i].addEventListener("mouseover", () => {
       document.getElementById("name").textContent = "Name: " + data[i].data.name;

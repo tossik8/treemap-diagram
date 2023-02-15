@@ -3,12 +3,40 @@ import { firstColumn, secondColumn, thirdColumn } from "./data/legend-campaign-i
 const width = 960;
 const height = 570;
 
+window.onload = () => {
+  adjustZoom();
+}
+window.onresize = () => {
+  adjustZoom();
+}
+
 const svg = d3.select("#tree-map-container")
     .append("svg")
     .attr("id", "tree-map")
     .attr("width", width)
     .attr("height", height)
     .attr("viewBox", `0 0 ${width} ${height}`);
+
+function adjustZoom(){
+  if(document.documentElement.clientWidth < 380){
+    document.body.style.zoom = "37%";
+  }
+  else if(document.documentElement.clientWidth < 520){
+    document.body.style.zoom = "40%";
+  }
+  else if(document.documentElement.clientWidth < 700){
+    document.body.style.zoom = "50%";
+  }
+  else if(document.documentElement.clientWidth < 880){
+    document.body.style.zoom = "70%";
+  }
+  else if(document.documentElement.clientWidth < 980){
+    document.body.style.zoom = "90%";
+  }
+  else{
+    document.body.style.zoom = "100%";
+  }
+}
 
 d3.json("https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/kickstarter-funding-data.json")
   .then(data => createTreemap(data,svg));
@@ -23,8 +51,6 @@ function createTreemap(data,svg){
                       .padding(0.5);
 
     const root = treemap(hierarchy);
-
-    console.log(hierarchy);
 
     const groups = svg.selectAll("rect")
                       .data(root.leaves())
@@ -66,7 +92,6 @@ function createTreemap(data,svg){
 
 function makeTooltip(data){
   const rects = document.getElementsByClassName("map-container");
-  console.log(data);
   for(let i = 0; i < rects.length; ++i){
     rects[i].addEventListener("mouseover", (e) => {
       document.getElementById("name").textContent = "Name: " + data[i].data.name;
