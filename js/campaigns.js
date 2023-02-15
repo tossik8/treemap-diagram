@@ -8,7 +8,7 @@ const svg = d3.select(".panel")
     .attr("viewBox", `0 0 ${width} ${height}`);
 
 d3.json("https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/kickstarter-funding-data.json")
-  .then(data => createTreemap(data,svg))
+  .then(data => createTreemap(data,svg));
 
 function createTreemap(data,svg){
     const hierarchy = d3.hierarchy(data)

@@ -2,10 +2,10 @@ const width = 960;
 const height = 570;
 
 const svg = d3.select(".panel")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .attr("viewBox", `0 0 ${width} ${height}`);
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .attr("viewBox", `0 0 ${width} ${height}`);
 
 
 d3.json("https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/movie-data.json")
