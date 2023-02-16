@@ -5,6 +5,7 @@ body{
     flex-direction: column;
     align-items: center;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background: linear-gradient(90deg,  rgb(235, 234, 220), rgb(235, 239, 241), rgb(227, 224, 225));
 }
 .panel{
     display: flex;
