@@ -101,7 +101,7 @@ function makeTooltip(data){
       document.getElementById("tooltip").setAttribute("data-value", data[i].value);
 
       document.getElementById("tooltip").style.top = rects[i].children[0].attributes.getNamedItem("y").value +  "px";
-      document.getElementById("tooltip").style.left = rects[i].children[0].attributes.getNamedItem("x").value + "px";
+      document.getElementById("tooltip").style.left = parseFloat(rects[i].children[0].attributes.getNamedItem("x").value) + parseFloat(rects[i].children[0].attributes.getNamedItem("width").value) + "px";
 
       document.getElementById("tooltip").classList.remove("invisible");
       document.getElementById("tooltip").classList.add("visible");
@@ -114,9 +114,9 @@ function makeTooltip(data){
   }
 }
 function makeLegend(legend){
-  generateColumn(legend, firstColumn, 0, "first-column");
-  generateColumn(legend, secondColumn, 80, "second-column");
-  generateColumn(legend, thirdColumn, 150, "third-column");
+  generateColumn(legend, firstColumn, 40, "first-column");
+  generateColumn(legend, secondColumn, 120, "second-column");
+  generateColumn(legend, thirdColumn, 190, "third-column");
 }
 
 function generateColumn(legend, column, x, id){
