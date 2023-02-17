@@ -63,7 +63,7 @@ function createTreemap(data, svg){
             .attr("class", "tile")
             .attr("width", d => d.x1 - d.x0)
             .transition()
-            .duration(1000)
+            .duration((d, i) => i * 50)
             .attr("height", d => d.y1 - d.y0)
             .attr("data-name", d => d.data.name)
             .attr("data-category", d => d.data.category)
